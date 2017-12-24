@@ -9,4 +9,12 @@ let lennon2 = {
     "name":"John",
     "year":1940,
     "living":false
-}
+};
+
+let beatles = Array();
+beatles[0]=lennon2;
+
+let beatles1 = {};
+beatles1.vocalist = lennon2;
+
+var a =1;

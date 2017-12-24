@@ -1,0 +1,30 @@
+{
+  "name": "javascript_dom",
+  "version": "1.0.0",
+  "description": "this is what I learn,some samples, and summaries based on \"JavaScript DOM\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JiangLiruii/JavaScript_DOM.git"
+  },
+  "keywords": [
+    "JavaScriptDOM"
+  ],
+  "author": "JiangLirui <lorry.jiang@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JiangLiruii/JavaScript_DOM/issues"
+  },
+  "homepage": "https://github.com/JiangLiruii/JavaScript_DOM#readme",
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
