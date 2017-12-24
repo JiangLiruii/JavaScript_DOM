@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"> <!--root -->
+<head>          <!--1 -->
+  <meta charset="UTF-8">    <!--2 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--2 -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"><!--2 -->
+  <title>Document</title>   <!--2 -->
+<style>
+  p {
+    color: yellow;
+    font-family: "arial",sans-serif;
+    font-size: 1.2em;
+  }
+  body {
+    color: white;
+    background-color: black;
+  }
+  .special {
+    font-style: italic;
+  }
+  p.special {
+    text-transform: uppercase;
+  }
+  #shoplist {
+    border: 1px solid white;
+    background-color: #333;
+    color: #ccc;
+    padding: 1em; 
+  }
+  #shoplist li {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>          <!--1 -->
+  <div>         <!--2 -->
+    <h1 class="special">what do you want</h1>     <!--3 -->
+    <p title="important" class="special">don't forget your baby</p> <!--3 title为属性节点，，同时包含文本节点-->
+    <ul id="shoplist">            <!--4 -->
+      <li>beer</li>               <!--5 -->
+      <li>candy</li>
+      <li class="sale">book</li>
+      <li class="sale important">coffee</li>
+    </ul>
+    <p>我没有title标签</p>
+  </div>
+<script>
+  // alert(typeof document.getElementById("shoplist"));
+  // alert(document.getElementsByTagName("li").length);
+  // alert(document.getElementsByTagName("*").length);
+  const get_div = document.getElementById("shoplist");
+  // alert(get_div.getElementsByTagName("*").length);
+  // const book_and_coffee = document.getElementsByClassName("sale");
+  // const coffee = document.getElementsByClassName("important sale")
+  // alert(book_and_coffee.length);
+  // alert(coffee.length);
+  //搜索所有的p标签中是否有title的tag
+  const p_amount = document.getElementsByTagName("p");
+  for (let i = 0 ;i < p_amount.length;i++) {
+    p_amount[i].setAttribute('title',"goods");    
+    title_exist = p_amount[i].getAttribute('title');
+    if (title_exist != null){       //等价于if(title_exist)
+      alert(title_exist);
+    }
+  }
+  get_div.setAttribute("title","good father");
+  alert(get_div.getAttribute("title"));
+</script>
+</body>
+</html>
