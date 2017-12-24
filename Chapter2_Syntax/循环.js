@@ -17,7 +17,7 @@ for (count; count < 11; count++) {
 }
 
 // 对元组进行遍历
-const beatles1 = Array('John', 'Paul', 'George', 'Ringo');
+const beatles1 = ['John', 'Paul', 'George', 'Ringo'];
 for (let i = 0; i < beatles.length; i++) {
   alert(beatles[i]);
 }
