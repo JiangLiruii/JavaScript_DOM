@@ -6,5 +6,8 @@
         "no-plusplus":0,
         "no-array-constructor":0,
         "no-unused-vars":0
+    },
+    "env": {
+        "browser": true
     }
 }
