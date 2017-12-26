@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Gallery</title>
+    <script src="./showpic.js" type="text/javascript"></script>
+    <script src="./addOnload.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="./layout.css" media="screen"/> <!--rel属性是说明为样式表，media是规定将显示在什么类型的设备上，浏览器支持screen print all-->
+</head>
+<body>
+    <h1>Snapshots</h1>
+    <P id="description"> Choose an image </P>
+    <ul id="gallaryImage">
+        <li>
+            <a href="./images/bigben.jpg" title="bigben">BigBen</a>    <!--绑定单个元素，因为href指定了图片地址，支持平稳退化-->
+        </li>
+        <li>
+            <a href="./images/coffee.jpg" title="coffee">Coffee</a>
+        </li>
+        <li>
+            <a href="./images/fierworks.jpg" title="fireworks">Fireworks</a>
+        </li>
+        <li>
+            <a href="./images/rose.jpg" title="rose">Rose</a>
+        </li>
+    </ul>
+    <img id="placeholder" src="./image/placeholder.gif" alt="my image gallery"/>
+<script>
+    addOnload(countBodyChildren);
+    addOnload(prepareGallery);    
+</script>
+</body>
+</html>
