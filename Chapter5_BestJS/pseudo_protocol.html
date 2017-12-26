@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <a href="javascript:popup('http://www.baidu.com/');">Click here to hoop site</a><!--伪协议调用函数-->
+  <a href="http://www.baidu.com" onclick="popup(this.href);return false;">This is better one</a> <!--平稳退化,return false表示网址不会真的打开-->
+  <a href="http://www.baidu.com/" class="popup">this is combine one</a><!--联合-->
+  <script type="text/javascript" src="./open_js.js"></script>  
+</body>
+</html>
