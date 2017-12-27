@@ -39,7 +39,7 @@ function showPic1(whichpic) {
     if (description.firstChild.nodeType === 3) {
       description.firstChild.nodeValue = imgText;
       return true;
-    }
+    } return false;
   } catch (err) {
     return false;
   }
