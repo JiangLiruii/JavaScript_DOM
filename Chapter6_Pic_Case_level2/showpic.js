@@ -28,6 +28,23 @@ function showPic(whichpic) {
     }
   }
 }
+
+function showPic1(whichpic) {
+  try {
+    const sourceImg = whichpic.href;
+    const placeholder = document.getElementById('placeholder');
+    placeholder.src = sourceImg;
+    const imgText = whichpic.title;
+    const description = document.getElementById('description');
+    if (description.firstChild.nodeType === 3) {
+      description.firstChild.nodeValue = imgText;
+      return true;
+    }
+  } catch (err) {
+    return false;
+  }
+}
+
 function prepareGallery() {
   if (!(document.getElementById && document.getElementsByClassName)) return false; // 判断网页是否支持js脚本
   if (!document.getElementById('gallaryImage')) return false; // 如果没有该标签则不执行后续程序，为了以后就算删除该id网页也不会报错
@@ -35,7 +52,7 @@ function prepareGallery() {
   const links = gallaryImages.getElementsByTagName('a');
   for (let i = 0; i < links.length; i++) {
     links[i].onclick = function () {
-      return !showPic(this);
+      return !showPic1(this);
     };
   }
 }
