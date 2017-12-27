@@ -56,3 +56,18 @@ function prepareGallery() {
     };
   }
 }
+
+function placeHolder() {
+  const placeholder = document.createElement('img');
+  placeholder.id = 'placeholder';
+  placeholder.src = './images/imagi.gif';
+  placeholder.alt = '我是占位符';
+  const description = document.createElement('p');
+  description.id = 'description';
+  const txt = document.createTextNode('请选择图片');
+  description.appendChild(txt);
+  const body = document.getElementsByTagName('body')[0];
+  const gallery = document.getElementById('gallaryImage');
+  body.insertBefore(placeholder, gallery);
+  body.insertBefore(description, gallery);
+}

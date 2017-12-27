@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>Snapshots</h1>
-    <P id="description"> Choose an image </P>
+    <!-- <P id="description"> Choose an image </P> -->
     <ul id="gallaryImage">
         <li>
             <a href="./images/bigben.jpg" title="bigben">BigBen</a>    <!--绑定单个元素，因为href指定了图片地址，支持平稳退化-->
@@ -26,9 +26,10 @@
             <a href="./images/rose.jpg" title="rose">Rose</a>
         </li>
     </ul>
-    <img id="placeholder" src="./image/placeholder.gif" alt="my image gallery"/>
+    <!-- <img id="placeholder" src="./image/placeholder.gif" alt="my image gallery"/> -->
 <script>
-    addOnload(countBodyChildren);
+    // addOnload(countBodyChildren);
+    addOnload(placeHolder);
     addOnload(prepareGallery);    
 </script>
 </body>
