@@ -9,6 +9,18 @@
 //   pEle.firstChild.nodeValue = text;
 // }
 // // 添加ChildNodes属性
+function addOnload(func) {
+  const oldonload = window.onload;
+  if (typeof window.onload !== 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function () {
+      oldonload();
+      func();
+    };
+  }
+}
+
 function countBodyChildren() {
   const bodyElement = document.getElementsByTagName('body')[0];
   alert(bodyElement.nodeType);
@@ -39,7 +51,7 @@ function showPic1(whichpic) {
     if (description.firstChild.nodeType === 3) {
       description.firstChild.nodeValue = imgText;
       return true;
-    } return false;
+    }
   } catch (err) {
     return false;
   }
@@ -56,3 +68,21 @@ function prepareGallery() {
     };
   }
 }
+
+function placeHolder() {
+  const placeholder = document.createElement('img');
+  placeholder.id = 'placeholder';
+  placeholder.src = './images/imagi.gif';
+  placeholder.alt = '我是占位符';
+  const description = document.createElement('p');
+  description.id = 'description';
+  const txt = document.createTextNode('请选择图片');
+  description.appendChild(txt);
+  const body = document.getElementsByTagName('body')[0];
+  const gallery = document.getElementById('gallaryImage');
+  body.insertBefore(placeholder, gallery);
+  body.insertBefore(description, gallery);
+}
+
+addOnload(placeHolder);
+addOnload(prepareGallery);
