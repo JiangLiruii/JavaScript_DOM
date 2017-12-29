@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script src="./addOnload.js"></script>  
   <link href="./typography.css" rel="stylesheet" media="screen">
-  <script src="./displayAbbreviations.js"></script>
-  <script src="./addOnload.js"></script>
-  <script src="./displayCitations.js"></script>
-  <script src="./displayAccessKey.js"></script>
 </head>
 <body>
   <ul id="navigation">
@@ -30,10 +27,8 @@
   that can be used to navigate <abbr title="HyperText Markup Language">HTML
   </abbr> and <abbr title="eXtensible Markup Language">XML</abbr> document.
   </p>
-  <script>
-    addOnload(displayAbbreviations);
-    addOnload(displayCitations);
-    addOnload(displayAccessKey);
-  </script>
+  <script src="displayAbbreviations.js"></script>
+  <script src="displayAccessKey.js"></script>  
+  <script src="displayCitations.js"></script>  
 </body>
 </html>

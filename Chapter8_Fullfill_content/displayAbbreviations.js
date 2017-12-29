@@ -13,10 +13,10 @@ function displayAbbreviations() {
     dl.appendChild(dt);
     dl.appendChild(dd);
   }
-  const bodies = document.getElementsByTagName('body');
   const header = document.createElement('h2');
   const headerText = document.createTextNode('Abbreviations');
   header.appendChild(headerText);
-  bodies[0].appendChild(header);
-  bodies[0].appendChild(dl);
+  document.body.appendChild(header);
+  document.body.appendChild(dl);
 }
+addOnload(displayAbbreviations);

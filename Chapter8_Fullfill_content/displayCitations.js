@@ -15,3 +15,4 @@ function displayCitations() {
     blockquoteLast.appendChild(sup);
   }
 }
+addOnload(displayCitations);

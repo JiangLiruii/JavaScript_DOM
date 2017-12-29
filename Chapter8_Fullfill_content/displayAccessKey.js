@@ -10,9 +10,23 @@ function displayAccessKey() {
 // }
   const links = document.getElementsByTagName('a');
   const header = document.createElement('h2');
+  const headerText = document.createTextNode('AccessKeys');
+  const list = document.createElement('ul');
   for (let i = 0; i < links.length; i++) {
-    const accessKey = links[i].accesskey;
-    const accessKeyText = document.createTextNode('AccessKeys');
-    accessKeyText.appendChild(accessKey)
+    if (links[i].hasAttribute('accessKey')) {
+      const accessKey = links[i].getAttribute('accesskey');
+      console.log(accessKey);
+      const str = `${links[i].text}:${accessKey}`;
+      console.log(str);
+      const item = document.createElement('li');
+      const text = document.createTextNode(str);
+      item.appendChild(text);
+      list.appendChild(item);
+      console.log(item);
+    } else return false;
   }
+  header.appendChild(headerText);
+  document.body.appendChild(header);
+  document.body.appendChild(list);
 }
+addOnload(displayAccessKey);
