@@ -9,8 +9,7 @@ function styleHeaderSiblings() {
   for (let i = 0; i < headers.length; i++) {
     const elem = getElementSibling(headers[i].nextSibling);
     // console.log(elem,headers[i].nextSibling);
-    elem.style.fontWeight = 'bold';
-    elem.style.fontSize = '1.2em';
+    addClass(elem, 'intro');
   }
 }
 addOnload(styleHeaderSiblings);

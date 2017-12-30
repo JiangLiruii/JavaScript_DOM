@@ -8,7 +8,7 @@ function stripeTable() {
       rows = table[i].getElementsByTagName('tr');
       for (let j = 0; j < rows.length; j++) {
         if (odd) {
-          rows[j].style.background = '#ffc';
+          addClass(rows[j], 'odd');
           odd = false;
         } else odd = true;
       }
