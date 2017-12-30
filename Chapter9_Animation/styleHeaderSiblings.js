@@ -3,13 +3,13 @@ function getElementSibling(node) {
   if (node.nextSibling) return getElementSibling(node.nextSibling);
   return null;
 }
-function styleHeaderSiblings() {
+function styleElementSiblings(tag, theClass) {
   if (!document.getElementsByTagName) return false;
-  const headers = document.getElementsByTagName('h1');
+  const headers = document.getElementsByTagName(tag);
   for (let i = 0; i < headers.length; i++) {
     const elem = getElementSibling(headers[i].nextSibling);
     // console.log(elem,headers[i].nextSibling);
-    addClass(elem, 'intro');
+    addClass(elem, theClass);
   }
 }
-addOnload(styleHeaderSiblings);
+addOnload(styleElementSiblings('h1', 'intro'));
