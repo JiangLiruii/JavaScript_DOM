@@ -19,12 +19,12 @@ function addOnload(func) {
     };
   }
 }
-function moveMessage() {
-  const message = document.getElementById('message');
+function moveMessage(ElementID, yFinal, xFinal, interval) {
+  const message = document.getElementById(ElementID);
   if (message.style.left && message.style.top) {
     let xpos = parseInt(message.style.left);
     let ypos = parseInt(message.style.top);
-    if (xpos === 200 && ypos === 100) {
+    if (xpos === xFinal && ypos === yFinal) {
       return true;
     }
     if (xpos < 200) { xpos++; }
@@ -33,7 +33,8 @@ function moveMessage() {
     if (ypos > 100) { ypos--; }
     message.style.left = `${xpos}px`;
     message.style.top = `${ypos}px`;
-    setTimeout(moveMessage, 10);
+    const repeat = `moveMessage('${ElementID}', ${yFinal}, ${xFinal}, ${interval})`;
+    setTimeout(repeat, interval);
   } else console.log('没有left和top的定义');
 }
 function positionMessage() {
@@ -42,7 +43,7 @@ function positionMessage() {
     message.style.position = 'absolute';
     message.style.left = '50px';
     message.style.top = '100px';
-    moveMessage();
+    moveMessage('message', 100, 200, 10);
   } else console.log('没有message');
 }
 
