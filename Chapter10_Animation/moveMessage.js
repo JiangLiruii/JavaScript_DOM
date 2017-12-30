@@ -27,10 +27,10 @@ function moveMessage(ElementID, yFinal, xFinal, interval) {
     if (xpos === xFinal && ypos === yFinal) {
       return true;
     }
-    if (xpos < 200) { xpos++; }
-    if (xpos > 200) { xpos--; }
-    if (ypos < 100) { ypos++; }
-    if (ypos > 100) { ypos--; }
+    if (xpos < xFinal) { xpos++; }
+    if (xpos > xFinal) { xpos--; }
+    if (ypos < yFinal) { ypos++; }
+    if (ypos > yFinal) { ypos--; }
     message.style.left = `${xpos}px`;
     message.style.top = `${ypos}px`;
     const repeat = `moveMessage('${ElementID}', ${yFinal}, ${xFinal}, ${interval})`;
@@ -43,8 +43,15 @@ function positionMessage() {
     message.style.position = 'absolute';
     message.style.left = '50px';
     message.style.top = '100px';
-    moveMessage('message', 100, 200, 10);
+    moveMessage('message', 125, 20, 20);
   } else console.log('没有message');
+  if (document.getElementById('message1')) {
+    const message = document.getElementById('message1');
+    message.style.position = 'absolute';
+    message.style.left = '20px';
+    message.style.top = '10px';
+    moveMessage('message1', 125, 20, 20);
+  } else console.log('没有message1');
 }
 
 
