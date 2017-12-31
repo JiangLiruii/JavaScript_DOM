@@ -89,5 +89,13 @@ function prepareSlideShow() {
     };
   }
 }
+function showSection(id) {
+  const section = document.getElementsByTagName('section');
+  for (let i = 1; i < section.length; i++) {
+    if (section[i].id !== id) {
+      section[i].style.display = 'none';
+    } else section[i].style.display = 'block';
+  }
+}
 addOnload(highlightPage);
 addOnload(prepareSlideShow);
