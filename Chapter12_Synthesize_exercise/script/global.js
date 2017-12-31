@@ -100,23 +100,78 @@ function showSection(id) {
   }
 }
 function prepareIntervalnav() {
-  const article = document.getElementsByTagName('article');
-  const nav = article[0].getElementsByTagName('nav');
-  const links = nav[0].getElementsByTagName('a');
-  for (let i = 0; i < links.length; i++) {
-    const element = links[i];
-    const sectionID = element.href.split('#')[1];
-    if (document.getElementById(sectionID)) {
-      document.getElementById(sectionID).style.display = 'none';
-      links[i].destination = sectionID;
-      links[i].onclick = function () {
-        showSection(this.destination);
-        console.log(this.destination);
-        return false;
-      };
+  console.log(document.getElementsByTagName('article')[0].getElementsByTagName('nav').length !== 0);
+  if (document.getElementsByTagName('article')[0].getElementsByTagName('nav').length !== 0) {
+    const article = document.getElementsByTagName('article');
+    const nav = article[0].getElementsByTagName('nav');
+    const links = nav[0].getElementsByTagName('a');
+    for (let i = 0; i < links.length; i++) {
+      const element = links[i];
+      const sectionID = element.href.split('#')[1];
+      if (document.getElementById(sectionID)) {
+        document.getElementById(sectionID).style.display = 'none';
+        links[i].destination = sectionID;
+        links[i].onclick = function () {
+          showSection(this.destination);
+          // console.log(this.destination);
+          return false;
+        };
+      }
     }
   }
 }
+
+// 用于photos.html中
+function showPic(whichpic) {
+  try {
+    const sourceImg = whichpic.href;
+    console.log(sourceImg);
+    const placeholder = document.getElementById('placeholder');
+    placeholder.src = sourceImg;
+    placeholder.style.display = 'block';
+    const imgText = whichpic.title;
+    const description = document.getElementById('description');
+    if (description.firstChild.nodeType === 3) {
+      description.firstChild.nodeValue = imgText;
+      return true;
+    }
+  } catch (err) {
+    return false;
+  }
+}
+
+function prepareGallery() {
+  if (!(document.getElementById && document.getElementsByClassName)) return false; // 判断网页是否支持js脚本
+  if (!document.getElementById('gallaryImage')) return false; // 如果没有该标签则不执行后续程序，为了以后就算删除该id网页也不会报错
+  const gallaryImages = document.getElementById('gallaryImage');
+  const links = gallaryImages.getElementsByTagName('a');
+  for (let i = 0; i < links.length; i++) {
+    links[i].onclick = function () {
+      return !showPic(this);
+    };
+  }
+}
+
+function placeHolder() {
+  if (document.getElementById('gallaryImage')) {
+    const placeholder = document.createElement('img');
+    placeholder.id = 'placeholder';
+    placeholder.src = '';
+    placeholder.alt = '我是占位符';
+    placeholder.style.display = 'none';
+    const description = document.createElement('p');
+    description.id = 'description';
+    const txt = document.createTextNode('plz choose one picture');
+    description.appendChild(txt);
+    const article = document.getElementsByTagName('article')[0];
+    const gallery = document.getElementById('gallaryImage');
+    insertAfter(placeholder, gallery);
+    article.insertBefore(description, gallery);
+  }
+}
+
 addOnload(highlightPage);
 addOnload(prepareSlideShow);
 addOnload(prepareIntervalnav);
+addOnload(placeHolder);
+addOnload(prepareGallery);

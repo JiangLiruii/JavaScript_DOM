@@ -87,3 +87,13 @@ article img {
   left: 0;
   z-index: 99;
 }
+#gallaryImage li{
+  display: inline;
+}
+#description {
+  display: block;
+}
+article nav {
+  display: block;
+  margin: 2em;
+}
