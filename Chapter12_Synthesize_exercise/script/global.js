@@ -32,7 +32,7 @@ function highlightPage() {
   const links = headers[0].getElementsByTagName('a');
   for (let i = 0; i < links.length; i++) {
     if (window.location.href.indexOf(links[i].href) !== -1) {
-      links[i].addClass('here');
+      addClass(links[i], 'here');
       const text = links[i].innerText;
       links[i].id = text;
     }
@@ -61,6 +61,7 @@ function moveElement(elementID, xFinal, yFinal, interval) {
 }
 
 function prepareSlideShow() {
+  if (document.getElementById('intro')){
   const intro = document.getElementById('intro');
   const slideShow = document.createElement('div');
   const frame = document.createElement('img');
@@ -89,13 +90,33 @@ function prepareSlideShow() {
     };
   }
 }
+}
 function showSection(id) {
   const section = document.getElementsByTagName('section');
-  for (let i = 1; i < section.length; i++) {
+  for (let i = 0; i < section.length; i++) {
     if (section[i].id !== id) {
       section[i].style.display = 'none';
     } else section[i].style.display = 'block';
   }
 }
+function prepareIntervalnav() {
+  const article = document.getElementsByTagName('article');
+  const nav = article[0].getElementsByTagName('nav');
+  const links = nav[0].getElementsByTagName('a');
+  for (let i = 0; i < links.length; i++) {
+    const element = links[i];
+    const sectionID = element.href.split('#')[1];
+    if (document.getElementById(sectionID)) {
+      document.getElementById(sectionID).style.display = 'none';
+      links[i].destination = sectionID;
+      links[i].onclick = function () {
+        showSection(this.destination);
+        console.log(this.destination);
+        return false;
+      };
+    }
+  }
+}
 addOnload(highlightPage);
 addOnload(prepareSlideShow);
+addOnload(prepareIntervalnav);
