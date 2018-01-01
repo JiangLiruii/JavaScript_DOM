@@ -97,3 +97,16 @@ article nav {
   display: block;
   margin: 2em;
 }
+table {
+  display: block;
+  margin: 1em auto;
+}
+dl {
+  overflow: hidden;
+}
+dt {
+  float: left;
+}
+dd {
+  float: left;
+}

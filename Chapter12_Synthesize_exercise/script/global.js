@@ -169,9 +169,67 @@ function placeHolder() {
     article.insertBefore(description, gallery);
   }
 }
+function highlightRows() {
+  if (document.getElementsByTagName) {
+    const tbody = document.getElementsByTagName('tbody');
+    const rows = tbody[0].getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+      const oldClass = rows[i].className;
+      rows[i].onmouseover = function () {
+        addClass(this, 'highlight');
+      };
+      rows[i].onmouseout = function () {
+        console.log(oldClass);
+        this.className = oldClass;
+      };
+    }
+  } else return false;
+}
+function stripeTable() {
+  if (document.getElementsByTagName) {
+    const table = document.getElementsByTagName('table');
+    let rows;
+    let odd;
+    for (let i = 0; i < table.length; i++) {
+      odd = false;
+      rows = table[i].getElementsByTagName('tr');
+      for (let j = 0; j < rows.length; j++) {
+        if (odd) {
+          addClass(rows[j], 'odd');
+          odd = false;
+        } else odd = true;
+      }
+    }
+  }
+}
+function displayAbbreviations() {
+  const abbrs = document.getElementsByTagName('abbr');
+  const lengthAbbr = abbrs.length;
+  if (lengthAbbr === 0) return false;
+  const dl = document.createElement('dl');
+  for (let i = 0; i < abbrs.length; i++) {
+    const title = abbrs[i].getAttribute('title');
+    const inText = abbrs[i].innerText;
+    const dt = document.createElement('dt');
+    const dd = document.createElement('dd');
+    dt.innerText = inText;
+    dd.innerText = title;
+    dl.appendChild(dt);
+    dl.appendChild(dd);
+  }
+  const header = document.createElement('h2');
+  const headerText = document.createTextNode('Abbreviations');
+  header.appendChild(headerText);
+  const container = document.getElementsByTagName('article')[0];
+  container.appendChild(header);
+  container.appendChild(dl);
+}
 
 addOnload(highlightPage);
 addOnload(prepareSlideShow);
 addOnload(prepareIntervalnav);
 addOnload(placeHolder);
 addOnload(prepareGallery);
+addOnload(stripeTable);
+addOnload(highlightRows);
+addOnload(displayAbbreviations);
