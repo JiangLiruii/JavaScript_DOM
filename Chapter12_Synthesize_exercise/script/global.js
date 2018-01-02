@@ -170,20 +170,24 @@ function placeHolder() {
   }
 }
 function highlightRows() {
-  if (document.getElementsByTagName) {
-    const tbody = document.getElementsByTagName('tbody');
-    const rows = tbody[0].getElementsByTagName('tr');
-    for (let i = 0; i < rows.length; i++) {
-      const oldClass = rows[i].className;
-      rows[i].onmouseover = function () {
-        addClass(this, 'highlight');
-      };
-      rows[i].onmouseout = function () {
-        console.log(oldClass);
-        this.className = oldClass;
-      };
+  try {
+    if (document.getElementsByTagName) {
+      const tbody = document.getElementsByTagName('tbody');
+      const rows = tbody[0].getElementsByTagName('tr');
+      for (let i = 0; i < rows.length; i++) {
+        const oldClass = rows[i].className;
+        rows[i].onmouseover = function () {
+          addClass(this, 'highlight');
+        };
+        rows[i].onmouseout = function () {
+          console.log(oldClass);
+          this.className = oldClass;
+        };
+      }
     }
-  } else return false;
+  } catch (error) {
+    console.log(error);
+  }
 }
 function stripeTable() {
   if (document.getElementsByTagName) {
@@ -224,6 +228,82 @@ function displayAbbreviations() {
   container.appendChild(header);
   container.appendChild(dl);
 }
+function focusLabel() {
+  try {
+    const labels = document.getElementsByClassName('label');
+    for (let i = 0; i < labels.length; i++) {
+      const id = labels[i].for;
+      labels[i].onclick = function () {
+        document.getElementById(id).focus();
+      };
+    }
+  } catch (error) {
+    return false;
+  }
+}
+// 添加loading函数
+function displayAjaxLoading(element) {
+  // 删除所有的子元素
+  while (element.hasChildNodes()) {
+    element.removeChild(element.lastChild);
+  }
+  // 添加图片元素
+  const img = document.createElement('img');
+  img.src = 'image/loading.gif';
+  img.alt = 'loading';
+  element.appendChild(img);
+}
+function getHTTPObject() {
+  if (typeof XMLHttpRequest === 'undefined') {
+    XMLHttpRequest = function () {
+      try { return ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch (e) {
+        try { return ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch (e1) {
+          try { return ActiveXObject('Msxml2.XMLHTTP'); } catch (e2) { return false; }
+        }
+      }
+    };
+  }
+  return new XMLHttpRequest();
+}
+function submitFormWithAjax(whichForm, theTarget) {
+  const request = getHTTPObject();
+  if (!request) { return false; }
+  displayAjaxLoading(theTarget);
+  let dataPart = [];
+  let data = '';
+  for (let i = 0; i < whichForm.elements.length; i++) {
+    const element = whichForm.elements[i];
+    console.log(element);
+    if (element.hasAttribute('name')) dataPart[i] = element.name + encodeURIComponent(element.value);
+  }
+  data = dataPart.join('&');
+  request.open('POST', whichForm.action, true);
+  // 设置请求头
+  request.setRequestHeader('Content-type', 'application/x-www-form-urlencode');
+  request.onreadystatechange = function () {
+    if (request.readyState === 4) {
+      if (request.status === 200 || request.status === 0) {
+        const match = request.responseText.match(/<acticle>([/s/S]+)<\/article>/);
+        if (match.length > 0) {
+          theTarget.innerText = match[1];
+        } else theTarget.innerText = '<p>Opps, some erro happend!</p>';
+      }
+    } else {
+      theTarget.innerText = `<p>${request.statusText}</p>`;
+    }
+  };
+  request.send(data);
+  return true;
+}
+function prepareForms() {
+  for (let i = 0; i < document.forms.length; i++) {
+    const thisForm = document.forms[i];
+    thisForm.onsubmit = function () {
+      const article = document.getElementsByTagName('article')[0];
+      return submitFormWithAjax(thisForm, article);
+    };
+  }
+}
 
 addOnload(highlightPage);
 addOnload(prepareSlideShow);
@@ -233,3 +313,4 @@ addOnload(prepareGallery);
 addOnload(stripeTable);
 addOnload(highlightRows);
 addOnload(displayAbbreviations);
+addOnload(prepareForms);
