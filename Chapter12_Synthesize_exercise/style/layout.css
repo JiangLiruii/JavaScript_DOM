@@ -110,3 +110,15 @@ dt {
 dd {
   float: left;
 }
+label {
+  display: inline-block;
+  width: 50px;
+  text-align: right;
+}
+fieldset {
+  border: 0;
+}
+/* p input {
+  position: absolute;
+  left: 20%;
+} */
